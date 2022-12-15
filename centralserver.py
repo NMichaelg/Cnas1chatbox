@@ -30,7 +30,6 @@ def on_new_connection(conn,addr):
     while connected:
         request=conn.recv(4096).decode(FORMAT)
         commands = request.split(" ")
-        print(commands)   
         if commands[0] == ":authenticate":
           print(commands)
           state = authenticate(commands[1], commands[2])
@@ -42,11 +41,13 @@ def on_new_connection(conn,addr):
             clean_list.append(addr)
           conn.send(str(state).encode(FORMAT))
         elif commands[0] == ":register":
+          print(commands)
           state = add_user(commands[1], commands[2])
           conn.send(str(state).encode(FORMAT))
         elif commands[0] ==":get_list":
             # conn.send(str(f'{len(addr_list)} ').encode(FORMAT))
             # msg = str(len(name_list))
+            print(commands)
             msg = ""
             for idx, ele in enumerate(name_list):
                 #connect to database to get name
@@ -54,7 +55,6 @@ def on_new_connection(conn,addr):
                 # msg += f"{ele}-({addr_list[idx][0]},{str(addr_list[idx][1])}) "
                 msg += f"{ele}-{addr_list[idx]} "
                 # msg=" ("+addr_list[idx][0]+","+str(addr_list[idx][1])+")"
-            print(msg)
             msg=msg.encode(FORMAT)
             conn.send(msg)
         elif commands[0] == ":disconnect":
@@ -117,7 +117,7 @@ def receiver(client_socket):
     
 
 
-
+print("server is running")
 while True:
     # toggle = input()
     # print(toggle)
