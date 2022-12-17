@@ -1,9 +1,10 @@
+
 from pymongo import MongoClient
 
 user =  {}
 
 # Establish a connection to mongodb
-client = MongoClient("mongodb+srv://michael:0803@cluster0.wigqva5.mongodb.net/?retryWrites=true&w=majority")
+client = MongoClient("mongodb+srv://admin:admin@p2p.pohbbo4.mongodb.net/?retryWrites=true&w=majority")
 db = client.user_info
 log_db = client.user_history
 # Schema 
